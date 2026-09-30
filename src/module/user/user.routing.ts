@@ -1,0 +1,12 @@
+import {fetchProfileHandler,editProfileHandler,removeProfileHandler,fetchUsersHandler} from "./user.controller.js"
+import express from "express"
+import { validateRequest } from "../../common/middleware/schema.middleware.js"
+import {requireLogin,requireRole} from "../../common/middleware/auth.middleware.js"
+import {editProfileRules  } from "./user.valdition.js"
+import { RoleType } from "../../common/enum/user-role.enum.js"
+const userRoutes = express.Router()
+userRoutes.get("/get/profile",requireLogin(),requireRole(RoleType.USER,RoleType.ADMIN),fetchProfileHandler)
+userRoutes.put("/update/profile",validateRequest(editProfileRules),requireLogin(),requireRole(RoleType.USER,RoleType.ADMIN),editProfileHandler)
+userRoutes.delete("/delete/profile",requireLogin(),requireRole(RoleType.USER,RoleType.ADMIN),removeProfileHandler)
+userRoutes.get("/get/all",requireLogin(),requireRole(RoleType.ADMIN),fetchUsersHandler)
+export default userRoutes

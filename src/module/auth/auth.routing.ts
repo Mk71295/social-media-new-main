@@ -1,0 +1,10 @@
+import {registerHandler,signinHandler,forgotPasswordHandler,passwordResetHandler} from "./auth.controller.js"
+import express from "express"
+import { validateRequest } from "../../common/middleware/schema.middleware.js"
+import { forgotPasswordRules, signinRules, registerRules,passwordResetRules } from "./auth.valdition.js"
+const authRoutes = express.Router()
+authRoutes.post("/signup",validateRequest(registerRules),registerHandler)
+authRoutes.post("/login",validateRequest(signinRules),signinHandler)
+authRoutes.post("/forget/password",validateRequest(forgotPasswordRules),forgotPasswordHandler)
+authRoutes.post("/reset/passworauth",validateRequest(passwordResetRules),passwordResetHandler)
+export default authRoutes
