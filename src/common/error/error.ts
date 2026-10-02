@@ -28,6 +28,9 @@ class AppErrors {
     throwPostMissing():never{
         throw new Error("POST NOT FOUND !")
     }
+       commentNotFoundError():never{
+        throw new Error("COMMENT NOT FOUND !")
+    }
 
 }
 export default new AppErrors()

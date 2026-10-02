@@ -5,6 +5,8 @@ import {connectRedis } from "./database/redis.db.js"
 import authRoutes from "./module/auth/auth.routing.js"
 import userRoutes from "./module/user/user.routing.js"
 import postRoutes from "./module/post/post.routing.js"
+import commentRoutes from"./module/Comment/comment.routing.js"
+import friendRoutes from"./module/Friend/Friend.routing.js"
 
 export const createServer = () => {
 
@@ -17,6 +19,8 @@ export const createServer = () => {
     server.use("/auth",authRoutes)
     server.use("/user",userRoutes)
     server.use("/post",postRoutes)
+     server.use("/comment",commentRoutes)
+    server.use("/friend",friendRoutes)
     return server
 }
 export default createServer
